@@ -17,4 +17,52 @@ You will be graded on the level of detail in each ticket, the clarity of the exe
 
 ## Your Breakdown Here
 
-TBD
+Notes:: 
+ 
+// (Objects - Agent, Shift, Facility)
+
+// Required
+
+// Reports for Facilities on Agents regarding Shifts during a timeline - getShiftsByFacility(facilityId, options) = Shifts[..., \<Agent\>]
+
+// Generate Report - generateReport = File (conversion of data (Shifts[..., \<Agent\>]) to PDF)
+
+Objects(Meta)::
+
+// Agent - {id, displayId, name, email, contact{number, country}}
+
+// Shift - {id, time{from, to}, facility{id}, status[open, close], agent{id, customId, status[joined,]}}
+
+// Facility - {id, displayId, name, ..., agents[{id, name, customId}]}
+
+
+### Breakdown - backend
+
+
+1. Save agent's customId for each facility (either at Shifts or Facility tables)
+> API to save the agent's customId for specific facility
+
+      implementation details [Case-1 : While shift confirming by facility we can ask for facility to provide customId, Case-2: At Facility table, as we are having all agents info, facility owner can go update his/her agents info respectively]
+      acceptance criteria [agent should be associated with facility in any manner]
+      time/effort estimate [1-2]
+
+2. Get list of shifts by facilityId
+> API to get list of shifts by facility during time period
+
+      implementation details [get all shifts of facility in time range]
+      acceptance criteria [facility should have access to shifts]
+      time/effort estimate [1-2]
+
+3. Get reports (from file a file-pdf) - 1
+> API to generate a pdf from data and store in common_local_store/cdn/aws(blob)
+
+      implementation details [list of data to file(pdf)]
+      acceptance criteria [facility should have access to shifts]
+      time/effort estimate [1-2]
+
+4. Get reports (from file a file-pdf) - 2
+> Generate a public/protected url from stored data file (common_local_store/cdn/aws(blob)) 
+
+      implementation details [get public/protected link to download the file]
+      acceptance criteria [facility should have access to shifts]
+      time/effort estimate [1-2]
